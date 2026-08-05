@@ -98,7 +98,7 @@ const Footer = () => {
     <FaPhoneAlt className="infoIcon" />
 
     <p>
-      +91 98765 43210
+      +91 9554696240
     </p>
   </div>
 
