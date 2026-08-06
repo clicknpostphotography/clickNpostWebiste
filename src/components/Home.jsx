@@ -24,12 +24,12 @@ const Home = () => {
     });
 
     setClients((prev) => {
-      if (prev >= 500) return 700;
+      if (prev >= 500) return 500;
       return prev + 5;
     });
 
   setExperience((prev) => {
-  if (prev >= 4) return 8;
+  if (prev >= 4) return 4;
 
   return prev + 0.1;
 });
