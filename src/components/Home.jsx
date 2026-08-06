@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import "./Home.css";
 import Anurag from "../assets/Anurag.jpeg"
 import Romy from "../assets/romy.jpeg"
+import { NavLink } from "react-router-dom";
 import Instagram from "./Instagram";
 import Testemonial from "./Testemonial";
 
@@ -66,13 +67,28 @@ const Home = () => {
   </p>
 
   <div className="heroButtons">
-    <button className="primaryBtn">
+    <NavLink to="/album">
+    <button
+     className="primaryBtn"
+     >
       Explore Portfolio
     </button>
 
-    <button className="secondaryBtn">
-      Book Session
-    </button>
+</NavLink>
+
+   <button
+  className="secondaryBtn"
+  onClick={() =>
+    window.open(
+      `https://wa.me/919554696240?text=${encodeURIComponent(
+        "Hello ClickNPost, I am interested in booking a photography session. Please share the details."
+      )}`,
+      "_blank"
+    )
+  }
+>
+  Book Session
+</button>
   </div>
 
   <div className="mobileStats">

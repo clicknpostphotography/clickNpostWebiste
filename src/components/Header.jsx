@@ -18,6 +18,20 @@ const getPath = (item) => {
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
 
+
+  const openWhatsApp = () => {
+  const message =
+    "Hello ClickNPost, I am interested in booking a photography session. Please share the details.";
+
+  const whatsappUrl = `https://wa.me/919554696240?text=${encodeURIComponent(
+    message
+  )}`;
+
+  window.open(whatsappUrl, "_blank");
+  setShowMenu(false);
+};
+
+
   return (
     <>
       <header className="navBar">
@@ -48,9 +62,13 @@ const Header = () => {
             })}
           </ul>
 
-          <button className="bookBtn">
-            Book Now
-          </button>
+         <button
+  type="button"
+  className="bookBtn"
+  onClick={openWhatsApp}
+>
+  Book Now
+</button>
         </div>
 
         {/* MOBILE MENU ICON */}
@@ -118,9 +136,13 @@ const Header = () => {
           </a>
 
         </div>
-        <button className="mobileBookBtn">
-          Book A Session
-        </button>
+       <button
+  type="button"
+  className="mobileBookBtn"
+  onClick={openWhatsApp}
+>
+  Book A Session
+</button>
       </div>
 
       {/* BACKDROP */}
