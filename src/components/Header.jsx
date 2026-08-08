@@ -23,7 +23,7 @@ const Header = () => {
   const message =
     "Hello ClickNPost, I am interested in booking a photography session. Please share the details.";
 
-  const whatsappUrl = `https://wa.me/919554696240?text=${encodeURIComponent(
+  const whatsappUrl = `https://wa.me/919555609461?text=${encodeURIComponent(
     message
   )}`;
 

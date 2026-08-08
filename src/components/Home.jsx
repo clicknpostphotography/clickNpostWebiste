@@ -80,7 +80,7 @@ const Home = () => {
   className="secondaryBtn"
   onClick={() =>
     window.open(
-      `https://wa.me/919554696240?text=${encodeURIComponent(
+      `https://wa.me/919555609461?text=${encodeURIComponent(
         "Hello ClickNPost, I am interested in booking a photography session. Please share the details."
       )}`,
       "_blank"
