@@ -21,7 +21,7 @@ const Header = () => {
 
   const openWhatsApp = () => {
   const message =
-    "Hello ClickNPost, I am interested in booking a photography session. Please share the details.";
+    "Hi Click N Post Studio! I'm interested in booking your wedding photography services. Please share your packages and availability";
 
   const whatsappUrl = `https://wa.me/919555609461?text=${encodeURIComponent(
     message

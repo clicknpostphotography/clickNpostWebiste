@@ -81,7 +81,7 @@ const Home = () => {
   onClick={() =>
     window.open(
       `https://wa.me/919555609461?text=${encodeURIComponent(
-        "Hello ClickNPost, I am interested in booking a photography session. Please share the details."
+        "Hi Click N Post Studio! I'm interested in booking your wedding photography services. Please share your packages and availability"
       )}`,
       "_blank"
     )
