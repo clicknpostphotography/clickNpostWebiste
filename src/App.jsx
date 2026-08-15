@@ -14,19 +14,19 @@ import Instagram from "./components/Instagram";
 import Testemonial from "./components/Testemonial";
 
 function App() {
-  const [loader, setLoader] = useState(true);
+  // const [loader, setLoader] = useState(true);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoader(false);
-    }, 2000);
+  // useEffect(() => {
+  //   const timer = setTimeout(() => {
+  //     setLoader(false);
+  //   }, 2000);
 
-    return () => clearTimeout(timer);
-  }, []);
+  //   return () => clearTimeout(timer);
+  // }, []);
 
-  if (loader) {
-    return <Loader />;
-  }
+  // if (loader) {
+  //   return <Loader />;
+  // }
 
   return (
     <>
