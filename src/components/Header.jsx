@@ -1,128 +1,152 @@
 import React, { useState } from "react";
 import { Menu, X } from "lucide-react";
-import clickNpost from "../assets/clickNpost.png";
 import { NavLink } from "react-router-dom";
 import { FaInstagram, FaFacebookF } from "react-icons/fa";
+
+import clickNpost from "../assets/clickNpost.png";
 import "./Header.css";
 
-const links = ["Home", "Services", "Album", "Buy Frames", "Instagram Work", "Testimonials"];
-
-const getPath = (item) => {
-  if (item === "Home") return "/";
-  if (item === "Instagram Work") return "/instagram";
-  if (item === "Testimonials") return "/testimonials";
-
-  return `/${item.toLowerCase().replace(" ", "-")}`;
-};
+const links = [
+  {
+    name: "Home",
+    path: "/",
+  },
+  {
+    name: "Services",
+    path: "/services",
+  },
+  {
+    name: "Album",
+    path: "/album",
+  },
+  {
+    name: "Digital Album",
+    path: "/digital-album",
+  },
+  {
+    name: "Instagram Work",
+    path: "/instagram",
+  },
+  {
+    name: "Testimonials",
+    path: "/testimonials",
+  },
+];
 
 const Header = () => {
   const [showMenu, setShowMenu] = useState(false);
 
+  const closeMenu = () => {
+    setShowMenu(false);
+  };
 
   const openWhatsApp = () => {
-  const message =
-    "Hi Click N Post Studio! I'm interested in booking your wedding photography services. Please share your packages and availability";
+    const message =
+      "Hi Click N Post Studio! I'm interested in booking your wedding photography services. Please share your packages and availability.";
 
-  const whatsappUrl = `https://wa.me/919555609461?text=${encodeURIComponent(
-    message
-  )}`;
+    const whatsappUrl = `https://wa.me/919555609461?text=${encodeURIComponent(
+      message
+    )}`;
 
-  window.open(whatsappUrl, "_blank");
-  setShowMenu(false);
-};
-
+    window.open(whatsappUrl, "_blank", "noopener,noreferrer");
+    closeMenu();
+  };
 
   return (
     <>
       <header className="navBar">
-
-        {/* LOGO */}
-        <div className="logoContainer">
+        <NavLink
+          to="/"
+          className="logoContainer"
+          onClick={closeMenu}
+          aria-label="Click N Post home"
+        >
           <img
             src={clickNpost}
-            alt="ClickNPost Logo"
+            alt="Click N Post Logo"
             className="header-logo"
           />
-        </div>
+        </NavLink>
 
-        {/* DESKTOP NAV */}
         <div className="desktopNav">
           <ul className="lists">
-            {links.map((items, key) => {
-              return (
-                <li key={key}>
-                  <NavLink
-                    to={getPath(items)}
-                    className={({ isActive }) => (isActive ? "activeLink" : "")}
-                  >
-                    {items}
-                  </NavLink>
-                </li>
-              );
-            })}
+            {links.map((link) => (
+              <li key={link.path}>
+                <NavLink
+                  to={link.path}
+                  className={({ isActive }) =>
+                    isActive ? "activeLink" : ""
+                  }
+                >
+                  {link.name}
+                </NavLink>
+              </li>
+            ))}
           </ul>
 
-         <button
-  type="button"
-  className="bookBtn"
-  onClick={openWhatsApp}
->
-  Book Now
-</button>
+          <button
+            type="button"
+            className="bookBtn"
+            onClick={openWhatsApp}
+          >
+            Book Now
+          </button>
         </div>
 
-        {/* MOBILE MENU ICON */}
-        <div
+        <button
+          type="button"
           className="mobile-menu"
           onClick={() => setShowMenu(true)}
+          aria-label="Open navigation menu"
         >
           <Menu size={30} />
-        </div>
+        </button>
       </header>
 
-      {/* MOBILE SIDEBAR */}
-
-      <div
+      <aside
         className={`mobileSidebar ${showMenu ? "showSidebar" : ""}`}
+        aria-hidden={!showMenu}
       >
-
         <div className="sidebarTop">
-          <img
-            src={clickNpost}
-            alt="logo"
-            className="mobileLogo"
-          />
+          <NavLink to="/" onClick={closeMenu}>
+            <img
+              src={clickNpost}
+              alt="Click N Post logo"
+              className="mobileLogo"
+            />
+          </NavLink>
 
-          <X
-            size={28}
+          <button
+            type="button"
             className="closeIcon"
-            onClick={() => setShowMenu(false)}
-          />
+            onClick={closeMenu}
+            aria-label="Close navigation menu"
+          >
+            <X size={28} />
+          </button>
         </div>
 
-        <ul className="mobileLinks">
-          {links.map((item, index) => {
-            return (
-              <NavLink
-                key={index}
-                to={getPath(item)}
-                className={({ isActive }) =>
-                  isActive ? "activeMobileLink" : ""
-                }
-                onClick={() => setShowMenu(false)}
-              >
-                {item}
-              </NavLink>
-            );
-          })}
-        </ul>
+        <nav className="mobileLinks">
+          {links.map((link) => (
+            <NavLink
+              key={link.path}
+              to={link.path}
+              className={({ isActive }) =>
+                isActive ? "activeMobileLink" : ""
+              }
+              onClick={closeMenu}
+            >
+              {link.name}
+            </NavLink>
+          ))}
+        </nav>
 
         <div className="mobileSocials">
-
           <a
             href="https://instagram.com/clicknpost_filmphotography"
             target="_blank"
             rel="noreferrer"
+            aria-label="Click N Post Instagram"
           >
             <FaInstagram size={24} />
           </a>
@@ -131,27 +155,28 @@ const Header = () => {
             href="https://facebook.com/"
             target="_blank"
             rel="noreferrer"
+            aria-label="Click N Post Facebook"
           >
             <FaFacebookF size={22} />
           </a>
-
         </div>
-       <button
-  type="button"
-  className="mobileBookBtn"
-  onClick={openWhatsApp}
->
-  Book A Session
-</button>
-      </div>
 
-      {/* BACKDROP */}
+        <button
+          type="button"
+          className="mobileBookBtn"
+          onClick={openWhatsApp}
+        >
+          Book A Session
+        </button>
+      </aside>
 
       {showMenu && (
-        <div
+        <button
+          type="button"
           className="backdrop"
-          onClick={() => setShowMenu(false)}
-        ></div>
+          onClick={closeMenu}
+          aria-label="Close navigation menu"
+        />
       )}
     </>
   );
